@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import fastifyEnv from "@fastify/env";
 import authPlugin from "./plugins/auth.js";
 import dbPlugin from "./db/connectMongo.js"
+import authRoutes from "./routes/auth.routes.js";
 
 const app = Fastify({
     logger: true
@@ -35,6 +36,7 @@ const options = {
 await app.register(fastifyEnv, options)
 await app.register(authPlugin)
 await app.register(dbPlugin)
+await app.register(authRoutes, { prefix: "/api/v1" })
 
 // // Test Login Route - Returns the JWT
 // app.post("/login", async (request, reply) => {
