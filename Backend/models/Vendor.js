@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const companySchema = new mongoose.Schema(
+const vendorSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     description: { type: String, required: true },
@@ -21,6 +21,6 @@ const companySchema = new mongoose.Schema(
   }
 );
 
-const LocationModel = mongoose.model("Company", companySchema);
+const VendorModel = mongoose.models.Vendor || mongoose.model("Vendor", vendorSchema);
 
-export default LocationModel;
+export default VendorModel;

@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 
-const locationSchema = new mongoose.Schema(
+const branchSchema = new mongoose.Schema(
   {
+    organization: {
+      ref: "Organization",
+      type: mongoose.Schema.Types.ObjectId,
+      required: true
+    },
     createdBy: {
       ref: "User",
       type: mongoose.Schema.Types.ObjectId,
@@ -21,6 +26,6 @@ const locationSchema = new mongoose.Schema(
   }
 );
 
-const LocationModel = mongoose.model("Location", locationSchema);
+const BranchModel = mongoose.models.Branch || mongoose.model("Branch", branchSchema);
 
-export default LocationModel;
+export default BranchModel;
