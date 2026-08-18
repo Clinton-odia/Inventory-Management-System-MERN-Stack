@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 import fastifyEnv from "@fastify/env";
-import authPlugin from "./utils/auth.js";
+import authPlugin from "./plugins/auth.js";
 
 const app = Fastify({
     logger: true
