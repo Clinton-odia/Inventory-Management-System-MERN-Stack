@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 const Userschema = new mongoose.Schema(
   {
+    organization: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Organization",
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -22,10 +27,10 @@ const Userschema = new mongoose.Schema(
     },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 
-const User = mongoose.model("User", Userschema);
+const UserModel = mongoose.models.User || mongoose.model("User", Userschema);
 
-export default User;
+export default UserModel;

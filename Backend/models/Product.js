@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const Productschema = new mongoose.Schema({
+  organization: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Organization",
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -8,18 +13,24 @@ const Productschema = new mongoose.Schema({
   description: {
     type: String,
   },
+  quantity: {
+    type: Number,
+    required: false,
+    default: 0,
+    min: 0,
+  },
   serialNo: {
     type: String,
     required: true,
-  },  
+  },
   createdBy: {
-    type: mongoose.Schema.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
   rackMountable: {
     type: Boolean,
@@ -29,9 +40,9 @@ const Productschema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  manufacturer: {
+  vendor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Company",
+    ref: "Vendor",
   },
 
   model: {
@@ -54,6 +65,10 @@ const Productschema = new mongoose.Schema({
     enum: ["normal user", "department", "admin"],
     default: "normal user",
   },
+  branch: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Branch",
+  },
 
   history: [
     {
@@ -63,6 +78,6 @@ const Productschema = new mongoose.Schema({
   ],
 });
 
-const Product = mongoose.model("Product", Productschema);
+const ProductModel = mongoose.models.Product || mongoose.model("Product", Productschema);
 
-export default Product;
+export default ProductModel;
